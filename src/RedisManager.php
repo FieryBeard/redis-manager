@@ -84,7 +84,7 @@ class RedisManager
      */
     public static function check($request)
     {
-        return (static::$authUsing ? : function () {
+        return (static::$authUsing ?: function () {
             return app()->environment('local');
         })($request);
     }
@@ -200,7 +200,7 @@ class RedisManager
     public function scan($pattern = '*', $count = 100)
     {
         $client = $this->getConnection();
-        $keys   = [];
+        $keys = [];
 
         foreach (new Keyspace($client->client(), $pattern) as $item) {
             $keys[] = $item;
@@ -226,7 +226,7 @@ LUA;
         return collect($keys)->map(function ($key) {
             return [
                 'key'  => $key[0],
-                'type' => (string)$key[1],
+                'type' => (string) $key[1],
                 'ttl'  => $key[2],
             ];
         });
@@ -250,7 +250,7 @@ LUA;
         /** @var DataType $class */
         $class = $this->{$type}();
 
-        $value  = $class->fetch($key);
+        $value = $class->fetch($key);
         $expire = $class->ttl($key);
 
         return compact('key', 'value', 'expire', 'type');
@@ -265,7 +265,7 @@ LUA;
      */
     public function update(Request $request)
     {
-        $key  = $request->get('key');
+        $key = $request->get('key');
         $type = $request->get('type');
 
         /** @var DataType $class */
@@ -325,13 +325,13 @@ LUA;
     {
         $disabled = config('redis-manager.disable_commands');
 
-        $disabled = array_map('strtoupper', (array)$disabled);
+        $disabled = array_map('strtoupper', (array) $disabled);
 
         return in_array(strtoupper($command), $disabled);
     }
 
     /**
-     * @param     $key
+     * @param $key
      * @param int $seconds
      *
      * @return int
@@ -345,4 +345,3 @@ LUA;
         }
     }
 }
-

@@ -12,7 +12,7 @@ use Encore\RedisManager\Formatter\Information;
 use Illuminate\Http\Request;
 use Illuminate\Redis\Connections\Connection;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Redis\RedisManager as Manager;
 use Predis\Collection\Iterator\Keyspace;
 use Predis\Pipeline\Pipeline;
 
@@ -168,7 +168,7 @@ class RedisManager
             $this->connection = $connection;
         }
 
-        return Redis::connection($this->connection);
+        return (new Manager('predis', config('database.redis')))->connection($this->connection);
     }
 
     /**

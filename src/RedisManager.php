@@ -168,7 +168,7 @@ class RedisManager
             $this->connection = $connection;
         }
 
-        return (new Manager('predis', config('database.redis')))->connection($this->connection);
+        return (new Manager(app(), 'predis', config('database.redis')))->connection($this->connection);
     }
 
     /**

@@ -1,9 +1,9 @@
 {
-    "name": "encore/redis-manager",
+    "name": "fierybeard/redis-manager",
     "description": "Redis manager for laravel",
     "type": "library",
     "keywords": ["laravel", "redis", "manager"],
-    "homepage": "https://github.com/z-song/redis-manager",
+    "homepage": "https://github.com/fierybeard/redis-manager",
     "license": "MIT",
     "authors": [
         {
@@ -13,8 +13,8 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/contracts": "~5.5",
-        "illuminate/support": "~5.5",
+        "illuminate/contracts": "~5.5| 8.*",
+        "illuminate/support": "~5.5 | 8.*",
         "predis/predis": "^1.1"
     },
     "require-dev": {

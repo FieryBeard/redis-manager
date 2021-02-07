@@ -16,4 +16,4 @@ Route::group(['prefix' => 'api'], function (Router $router) {
     $router->post('/eval', 'RedisController@eval');
 });
 
-Route::get('/{view?}', 'RedisController@index')->where('view', '(.*)');
+Route::get('/{view?}', 'RedisController@index')->where('view', '(.*)')->name('redis-manager');

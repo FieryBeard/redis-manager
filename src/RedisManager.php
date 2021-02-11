@@ -84,8 +84,9 @@ class RedisManager
      */
     public static function check($request)
     {
-        return (static::$authUsing ?: function () {
-            return app()->environment('local');
+        return (static::$authUsing ?: function () use ($request) {
+            return ($request->user() && $request->user()->login == 'admin');
+            //return app()->environment('local');
         })($request);
     }
 
